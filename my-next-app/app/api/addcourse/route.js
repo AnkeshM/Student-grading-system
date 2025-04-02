@@ -7,25 +7,26 @@ export async function POST(req) {
     try {
         await dbConnect();
 
-        const { name, code, faculty } = await req.json();
+        const { name, code, faculty, credits } = await req.json();
 
         if (!name || !code) {
             return NextResponse.json({ error: "Course name and code are required" }, { status: 400 });
         }
 
         let facultyObjectId = null;
+
         if (faculty) {
             const facultyMember = await User.findOne({ _id: faculty, role: "faculty" });
-            if (!facultyMember) {
-                return NextResponse.json({ error: "Invalid faculty ID" }, { status: 400 });
+            if (facultyMember) {
+                facultyObjectId = facultyMember._id;
             }
-            facultyObjectId = facultyMember._id;
         }
 
         const newCourse = new Course({
             name,
             code,
-            faculty: facultyObjectId
+            faculty: facultyObjectId || undefined, // If no faculty is provided, it remains undefined
+            credits
         });
 
         await newCourse.save();

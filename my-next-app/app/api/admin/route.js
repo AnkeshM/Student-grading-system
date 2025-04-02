@@ -4,62 +4,6 @@ import connectDB from "@/lib/mongodb";
 import User from "@/models/user"; // Use User schema
 import Semester from "@/models/semesters";
 
-// export async function POST(req) {
-//     try 
-//     {
-//         await connectDB();
-
-//         const body = await req.json();
-//         const { role, name, gender, batch = "", semester = "", email, password } = body;
-//         if (role === "student")
-//         {  
-//             const existingUser = await student.findOne({ email });
-//             if (existingUser) {
-//                 return NextResponse.json({ error: "User already exists" }, { status: 400 });
-//             }
-    
-//             const hashedPassword = await bcrypt.hash(password, 10);
-    
-//             const newUser = new student({
-//                 role,
-//                 name,
-//                 gender,
-//                 batch,
-//                 semester,
-//                 email,
-//                 password: hashedPassword,
-//             });
-//             await newUser.save();
-//         }
-        
-//         else if (role === "faculty")
-//         {
-//             const existingUser = await faculty.findOne({ email });
-//             if (existingUser) {
-//                 return NextResponse.json({ error: "User already exists" }, { status: 400 });
-//             }
-    
-//             const hashedPassword = await bcrypt.hash(password, 10);
-    
-//             const newUser = new faculty({
-//                 role,
-//                 name,
-//                 gender,
-//                 email,
-//                 password: hashedPassword,
-//             });
-//             await newUser.save();
-//         }
-
-
-//         return NextResponse.json({ message: "User registered successfully" }, { status: 201 });
-//     } 
-//     catch (err) 
-//     {
-//         return NextResponse.json({ error: "Failed to register user" }, { status: 500 });
-//     }
-// }
-
 export async function POST(req) {
     try {
         await connectDB();

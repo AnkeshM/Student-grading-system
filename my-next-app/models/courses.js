@@ -14,6 +14,10 @@ const newCourse = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         default: null // Faculty is optional
+    },
+    credits: {
+        type: Number,
+        required: true
     }
 });
 
