@@ -2,10 +2,11 @@
 import { useState } from "react";
 
 export default function AdminPanel() {
-  const [role, setRole] = useState("student");
+  const [role, setRole] = useState("");
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
   const [batch, setBatch] = useState("");
+  const [department, setDepartment] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -13,13 +14,10 @@ export default function AdminPanel() {
   const handleAddUser = async (e) => {
     e.preventDefault();
 
-    // Set semester to 1 automatically for students
-    const userSemester = role === "student" ? 1 : ""; // Only set for student role
-
     const res = await fetch("/api/admin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ role, name, gender, batch, semester: userSemester, email, password }),
+      body: JSON.stringify({ role, name, gender, batch, department, email, password }),
     });
 
     const data = await res.json();
@@ -30,6 +28,7 @@ export default function AdminPanel() {
       setName("");
       setGender("");
       setBatch("");
+      setDepartment("");
       setEmail("");
       setPassword("");
     }
@@ -48,6 +47,7 @@ export default function AdminPanel() {
               onChange={(e) => setRole(e.target.value)}
               className="w-full p-3 border rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-green-400"
             >
+              <option value="" disabled>Select Role</option>
               <option value="student">Student</option>
               <option value="faculty">Faculty</option>
             </select>
@@ -74,26 +74,45 @@ export default function AdminPanel() {
               onChange={(e) => setGender(e.target.value)}
               className="w-full p-3 border rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-green-400"
             >
+              <option value="" disabled>Select Gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
             </select>
           </div>
 
-          {/* Batch */}
-          <div>
-            <label className="block text-gray-700 font-medium mb-2">Batch</label>
-            <select
-              value={batch}
-              onChange={(e) => setBatch(e.target.value)}
-              className="w-full p-3 border rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-green-400"
-            >
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
-            </select>
-          </div>
+          {/* Batch or Department */}
+          {role === "student" ? (
+            <div>
+              <label className="block text-gray-700 font-medium mb-2">Batch</label>
+              <select
+                value={batch}
+                onChange={(e) => setBatch(e.target.value)}
+                className="w-full p-3 border rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-green-400"
+              >
+                <option value="" disabled>Select Batch</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+              </select>
+            </div>
+          ) : role === "faculty" ? (
+            <div>
+              <label className="block text-gray-700 font-medium mb-2">Department</label>
+              <select
+                value={department}
+                onChange={(e) => setDepartment(e.target.value)}
+                className="w-full p-3 border rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-green-400"
+              >
+                <option value="" disabled>Select Department</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+              </select>
+            </div>
+          ) : null}
 
           {/* Email */}
           <div>

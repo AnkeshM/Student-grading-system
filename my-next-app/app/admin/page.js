@@ -48,10 +48,10 @@ export default function AdminDashboard() {
         
         <div 
           className="w-72 h-40 bg-white shadow-lg rounded-lg p-6 text-center cursor-pointer flex flex-col justify-center hover:scale-105 transition duration-300"
-          onClick={() => handleNavigation("/addcourse")}
+          onClick={() => handleNavigation("/updatesem")}
         >
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">📚 Add Courses to Semester</h3>
-          <p className="text-gray-600">Assign courses to specific semesters.</p>
+          <h3 className="text-xl font-semibold text-gray-800 mb-2">📚 Update a Semester</h3>
+          <p className="text-gray-600">Handle course details for specific semesters.</p>
         </div>
         
         <div 
