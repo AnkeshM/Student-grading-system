@@ -54,19 +54,24 @@ export async function GET() {
 export async function POST(req) {
     try {
         await connectDB();
-
         const body = await req.json();
         const { role, email, password } = body;
 
-        // Check if user exists
+        console.log("Login attempt with email:", email);  // Debugging line
+
+        // Check if user exists by email
         const existingUser = await User.findOne({ email });
+        
         if (!existingUser) {
+            console.log("User not found in DB");  // Debugging line
             return NextResponse.json({ message: "User not found" }, { status: 404 });
         }
 
-        // Validate password
-        const passwordMatch = await bcrypt.compare(password, existingUser.password);
-        if (!passwordMatch) {
+        console.log("Existing User found:", existingUser);  // Debugging line
+
+        // Directly compare the plain text password
+        if (existingUser.password !== password) {
+            console.log("Incorrect password entered");  // Debugging line
             return NextResponse.json({ message: "Incorrect password" }, { status: 401 });
         }
 
@@ -98,6 +103,9 @@ export async function DELETE(req) {
         const { email } = await req.json(); // Extract email from request body
         if (!email) {
             return NextResponse.json({ message: "Email is required" }, { status: 400 });
+        }
+        if (existingUser.password !== password) {
+            return NextResponse.json({ message: "Incorrect password" }, { status: 401 });
         }
 
         const deletedUser = await user.findOneAndDelete({ email });
