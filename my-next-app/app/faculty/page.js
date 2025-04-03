@@ -32,7 +32,7 @@ export default function FacultyDashboard() {
         {/* Function Cards */}
         <div 
           className="w-72 h-40 bg-white shadow-lg rounded-lg p-6 text-center cursor-pointer hover:scale-105 transition duration-300"
-          onClick={() => handleNavigation("/gradesheet")}
+          onClick={() => handleNavigation("/assignmarks")}
         >
           <h3 className="text-xl font-semibold text-gray-800 mb-2">📄 Assign Marks</h3>
           <p className="text-gray-600">Grade student submissions with ease.</p>

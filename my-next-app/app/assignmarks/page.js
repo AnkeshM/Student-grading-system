@@ -35,7 +35,6 @@ export default function AssignMarks() {
 
     if (response.ok) {
       alert("Marks Assigned Successfully");
-      router.push("/faculty_dashboard");
     } else {
       alert("Failed to Assign Marks");
     }
