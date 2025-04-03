@@ -34,7 +34,7 @@ export default function CreateQuiz() {
 
   const createQuiz = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/createquiz", {
+      const response = await fetch("/api/createquiz", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title: "New Quiz", questions }),
