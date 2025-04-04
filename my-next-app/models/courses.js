@@ -12,8 +12,12 @@ const newCourse = new mongoose.Schema({
     },
     faculty: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        ref: "user",
         default: null // Faculty is optional
+    },
+    semester: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "semesters"
     },
     credits: {
         type: Number,
@@ -21,5 +25,5 @@ const newCourse = new mongoose.Schema({
     }
 });
 
-const Course = mongoose.models.Course || mongoose.model("Course", newCourse);
+const Course = mongoose.models.courses || mongoose.model("courses", newCourse);
 export default Course;

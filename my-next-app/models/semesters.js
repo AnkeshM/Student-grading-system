@@ -15,9 +15,9 @@ const newSemester = new mongoose.Schema({
     },
     courses: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Course"
+        ref: "courses"
     }]
 });
 
-const Semester = mongoose.models.semester || mongoose.model("semester", newSemester);
+const Semester = mongoose.models.semesters || mongoose.model("semesters", newSemester);
 export default Semester;

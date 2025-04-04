@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const quizSchema = new mongoose.Schema({
     courseId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Course",
+        ref: "courses",
         required: true
     },
     title: {
@@ -12,7 +12,7 @@ const quizSchema = new mongoose.Schema({
     },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User", // Ensure only faculty create quizzes in app logic
+        ref: "user", // Ensure only faculty create quizzes in app logic
         required: true
     },
     questions: [{
@@ -32,7 +32,7 @@ const quizSchema = new mongoose.Schema({
     submissions: [{
         studentId: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
+            ref: "user"
         },
         answers: [{
             questionIndex: Number,
@@ -50,5 +50,5 @@ const quizSchema = new mongoose.Schema({
     }
 });
 
-const Quiz = mongoose.models.Quiz || mongoose.model("Quiz", quizSchema);
+const Quiz = mongoose.models.quiz || mongoose.model("quiz", quizSchema);
 export default Quiz;

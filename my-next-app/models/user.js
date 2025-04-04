@@ -29,7 +29,7 @@ const newUser = new mongoose.Schema({
     },
     semester: {
         type: mongoose.Schema.Types.ObjectId, // Reference to Semester model
-        ref: "Semester",
+        ref: "semesters",
         required: function () { return this.role === "student"; }
     },
     department: {
@@ -39,27 +39,26 @@ const newUser = new mongoose.Schema({
     courses: [{ // Courses assigned (for faculty)
         courseId: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Course"
-        },
-        courseName: String
+            ref: "courses"
+        }
     }],
     quizzes: [{ // Quizzes attempted (for students)
         quizId: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Quiz"
+            ref: "quiz"
         },
         score: Number
     }],
     academicRecords: [{ // Stores marks and grades for each semester
         semesterId: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Semester"
+            ref: "semesters"
         },
         semesterName: String, // e.g., "Semester 1"
         courses: [{
             courseId: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: "Course"
+                ref: "courses"
             },
             courseName: String,
             marks: {
