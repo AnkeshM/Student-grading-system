@@ -74,7 +74,8 @@ const newUser = new mongoose.Schema({
                 required: true
             },
             grade: {
-                type: String
+                type: String,
+                default: null
             }
         }]
     }]
