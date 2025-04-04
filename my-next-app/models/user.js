@@ -55,6 +55,14 @@ const newUser = new mongoose.Schema({
             ref: "semesters"
         },
         semesterName: String, // e.g., "Semester 1"
+        SPI:{
+            type: Number,
+            default: 0
+        },
+        CPI:{
+            type: Number,
+            default: 0
+        },
         courses: [{
             courseId: {
                 type: mongoose.Schema.Types.ObjectId,
