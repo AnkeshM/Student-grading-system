@@ -53,14 +53,6 @@ export default function StudentDashboard() {
           <h3 className="text-xl font-semibold text-gray-800 mb-2">📝 Attempt Quizzes</h3>
           <p className="text-gray-600">Participate in quizzes and test your knowledge.</p>
         </div>
-        
-        <div 
-          className="w-72 h-40 bg-white shadow-lg rounded-lg p-6 text-center cursor-pointer flex flex-col justify-center hover:scale-105 transition duration-300"
-          onClick={() => handleNavigation("/course-contents")}
-        >
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">📚 View Course Contents</h3>
-          <p className="text-gray-600">Access study materials and course resources.</p>
-        </div>
       </div>
     </div>
   );

@@ -40,14 +40,6 @@ export default function FacultyDashboard() {
         
         <div 
           className="w-72 h-40 bg-white shadow-lg rounded-lg p-6 text-center cursor-pointer hover:scale-105 transition duration-300"
-          onClick={() => handleNavigation("/performance")}
-        >
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">📊 View Grading Chart</h3>
-          <p className="text-gray-600">Analyze student performance with charts.</p>
-        </div>
-        
-        <div 
-          className="w-72 h-40 bg-white shadow-lg rounded-lg p-6 text-center cursor-pointer hover:scale-105 transition duration-300"
           onClick={() => handleNavigation("/createquiz")}
         >
           <h3 className="text-xl font-semibold text-gray-800 mb-2">📝 Create Quiz</h3>

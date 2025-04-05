@@ -50,16 +50,8 @@ export default function AdminDashboard() {
           className="w-72 h-40 bg-white shadow-lg rounded-lg p-6 text-center cursor-pointer flex flex-col justify-center hover:scale-105 transition duration-300"
           onClick={() => handleNavigation("/assigncourse")}
         >
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">🔄 Assign Course</h3>
+          <h3 className="text-xl font-semibold text-gray-800 mb-2">📚 Assign Course</h3>
           <p className="text-gray-600">Assign a course to a faculty member.</p>
-        </div>
-        
-        <div 
-          className="w-72 h-40 bg-white shadow-lg rounded-lg p-6 text-center cursor-pointer flex flex-col justify-center hover:scale-105 transition duration-300"
-          onClick={() => handleNavigation("/updatesem")}
-        >
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">📚 Update a Semester</h3>
-          <p className="text-gray-600">Handle course details for specific semesters.</p>
         </div>
         
         <div 
@@ -82,7 +74,7 @@ export default function AdminDashboard() {
           className="w-72 h-40 bg-white shadow-lg rounded-lg p-6 text-center cursor-pointer flex flex-col justify-center hover:scale-105 transition duration-300"
           onClick={() => handleNavigation("/issueresult")}
         >
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">Issue Result</h3>
+          <h3 className="text-xl font-semibold text-gray-800 mb-2">📝 Issue Result</h3>
           <p className="text-gray-600">Issue the semester results to the students.</p>
         </div>
       </div>
