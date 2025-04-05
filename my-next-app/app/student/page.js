@@ -32,7 +32,7 @@ export default function StudentDashboard() {
         {/* Function Cards */}
         <div 
           className="w-72 h-40 bg-white shadow-lg rounded-lg p-6 text-center cursor-pointer flex flex-col justify-center hover:scale-105 transition duration-300"
-          onClick={() => handleNavigation("/gradesheet")}
+          onClick={() => handleNavigation("/result")}
         >
           <h3 className="text-xl font-semibold text-gray-800 mb-2">📄 View Grade Sheet</h3>
           <p className="text-gray-600">Check your marks and academic performance.</p>

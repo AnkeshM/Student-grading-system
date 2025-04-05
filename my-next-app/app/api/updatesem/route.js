@@ -1,43 +1,76 @@
 import { NextResponse } from "next/server";
-import dbConnect from "@/lib/mongodb";
-import Semester from "@/models/semesters";
-import Course from "@/models/courses";
+import connectDB from "@/lib/mongodb";
+import User from "/models/user";
+import Semester from "/models/semesters"; // Assuming you have this model
 
-export async function PATCH(req) {
-    try {
-        await dbConnect();
-        const { semesterId, courseCode, action } = await req.json();
+export async function POST(req) {
+  try {
+    await connectDB();
 
-        if (!semesterId || !courseCode || !action) {
-            return NextResponse.json({ error: "Semester ID, course code, and action are required" }, { status: 400 });
-        }
+    const body = await req.json();
+    const { email, semesterName } = body;
 
-        const semester = await Semester.findById(semesterId);
-        if (!semester) {
-            return NextResponse.json({ error: "Semester not found" }, { status: 404 });
-        }
-
-        const course = await Course.findOne({ code: courseCode });
-        if (!course) {
-            return NextResponse.json({ error: "Course not found" }, { status: 404 });
-        }
-
-        if (action === "add") {
-            if (!semester.courses.includes(course._id)) {
-                semester.courses.push(course._id);
-            }
-        } else if (action === "remove") {
-            semester.courses = semester.courses.filter(id => !id.equals(course._id));
-        } else {
-            return NextResponse.json({ error: "Invalid action. Use 'add' or 'remove'" }, { status: 400 });
-        }
-
-        await semester.save();
-
-        return NextResponse.json({ message: "Semester updated successfully", semester }, { status: 200 });
-
-    } catch (error) {
-        console.error("Error updating semester:", error);
-        return NextResponse.json({ error: "Failed to update semester" }, { status: 500 });
+    if (!email || !semesterName) {
+      return NextResponse.json(
+        { error: "Missing required fields (email or semesterName)." },
+        { status: 400 }
+      );
     }
+
+    // Find the semester by name
+    const semester = await Semester.findOne({ name: semesterName });
+
+    if (!semester) {
+      return NextResponse.json(
+        { error: "Semester with that name not found." },
+        { status: 404 }
+      );
+    }
+
+    const student = await User.findOne({ email, role: "student" });
+
+    if (!student) {
+      return NextResponse.json(
+        { error: "Student not found." },
+        { status: 404 }
+      );
+    }
+
+    const exists = student.academicRecords.some(
+      record => record.semesterId.toString() === semester._id.toString()
+    );
+
+    student.semester = semester._id;
+    
+    if (exists) {
+      return NextResponse.json(
+        { error: "Semester already added to academic records." },
+        { status: 400 }
+      );
+    }
+
+    // Add semester to academicRecords
+    student.academicRecords.push({
+      semesterId: semester._id,
+      semesterName: semester.name,
+      SPI: 0,
+      CPI: 0,
+      courses: []
+    });
+
+    // Optionally also update current semester reference
+
+    await student.save();
+
+    return NextResponse.json(
+      { message: "Semester added successfully.", student },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error adding semester:", error);
+    return NextResponse.json(
+      { error: "Internal server error." },
+      { status: 500 }
+    );
+  }
 }

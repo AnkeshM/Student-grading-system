@@ -40,7 +40,7 @@ export default function AdminDashboard() {
         
         <div 
           className="w-72 h-40 bg-white shadow-lg rounded-lg p-6 text-center cursor-pointer flex flex-col justify-center hover:scale-105 transition duration-300"
-          onClick={() => handleNavigation("updatesemester")}
+          onClick={() => handleNavigation("/updatesem")}
         >
           <h3 className="text-xl font-semibold text-gray-800 mb-2">🔄 Update Student Semester</h3>
           <p className="text-gray-600">Update the semester for any student.</p>
@@ -76,6 +76,14 @@ export default function AdminDashboard() {
         >
           <h3 className="text-xl font-semibold text-gray-800 mb-2">🗑️ Delete User</h3>
           <p className="text-gray-600">Remove a student or faculty member from the system.</p>
+        </div>
+
+        <div 
+          className="w-72 h-40 bg-white shadow-lg rounded-lg p-6 text-center cursor-pointer flex flex-col justify-center hover:scale-105 transition duration-300"
+          onClick={() => handleNavigation("/issueresult")}
+        >
+          <h3 className="text-xl font-semibold text-gray-800 mb-2">Issue Result</h3>
+          <p className="text-gray-600">Issue the semester results to the students.</p>
         </div>
       </div>
     </div>
