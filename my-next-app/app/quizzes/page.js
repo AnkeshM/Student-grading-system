@@ -15,13 +15,17 @@ export default function QuizzesPage() {
 
       try {
         const res = await axios.get(`/api/quizzes?studentId=${user.userId}`);
+        console.log("Fetched Quizzes:", res.data);
+
+        // Group quizzes by course name (using populated courseId.name)
         const grouped = {};
         res.data.forEach((quiz) => {
-          const courseName = quiz.courseId?.name || "Unknown Course";
+          const courseName = quiz.courseId?.name || "Unassigned Course";
           if (!grouped[courseName]) grouped[courseName] = [];
           grouped[courseName].push(quiz);
         });
 
+        console.log("Grouped Quizzes:", grouped);
         setQuizzesByCourse(grouped);
       } catch (err) {
         console.error("Failed to fetch quizzes:", err);
