@@ -79,18 +79,16 @@ export default function AssignMarks() {
 
       if (Object.keys(validMarks).length === 0) return alert("Please enter valid marks.");
 
-      // ✅ Get facultyId from localStorage
       const userData = JSON.parse(localStorage.getItem("user"));
       if (!userData || !userData.userId) return alert("Faculty information is missing.");
 
-      // ✅ Step 1: Assign Marks
       const response = await fetch("/api/assignmarks", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           courseId: course._id,
           marks: validMarks,
-          facultyId: userData.userId, // ✅ Include manually from localStorage
+          facultyId: userData.userId,
         }),
       });
 
@@ -98,7 +96,6 @@ export default function AssignMarks() {
         alert("Marks Assigned Successfully");
         setMarks({});
 
-        // ✅ Step 2: Assign Grades after marks are successfully assigned
         const gradeResponse = await fetch("/api/grades", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -122,6 +119,10 @@ export default function AssignMarks() {
     } catch (err) {
       alert("Error submitting marks: " + err.message);
     }
+  };
+
+  const goToCustomGrading = () => {
+    router.push("/customgrades");
   };
 
   if (loading) return <div className="text-center mt-10 text-white">Loading course data...</div>;
@@ -151,13 +152,20 @@ export default function AssignMarks() {
                 />
               </div>
             ))}
-            <div className="text-center pt-6">
+            <div className="text-center pt-6 flex flex-col sm:flex-row justify-center gap-4">
               <button
                 type="button"
                 className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"
                 onClick={handleSubmit}
               >
                 Submit Marks
+              </button>
+              <button
+                type="button"
+                className="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 transition duration-300"
+                onClick={goToCustomGrading}
+              >
+                Custom Grading
               </button>
             </div>
           </form>
