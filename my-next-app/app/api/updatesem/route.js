@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import User from "/models/user";
-import Semester from "/models/semesters"; // Assuming you have this model
+import Semester from "/models/semesters";
 
 export async function POST(req) {
   try {
