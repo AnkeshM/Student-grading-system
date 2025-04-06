@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 import Quiz from "@/models/quiz";
 import Student from "@/models/user";
 import Semester from "@/models/semesters"; // Import the Semester model
+import Course from "@/models/courses";
+
 
 export async function GET(req) {
   try {
