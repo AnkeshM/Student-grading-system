@@ -44,8 +44,8 @@ export async function POST(req) {
     
     if (exists) {
       return NextResponse.json(
-        { error: "Semester already added to academic records." },
-        { status: 400 }
+        { error: "Current semester updated." },
+        { status: 200 }
       );
     }
 
