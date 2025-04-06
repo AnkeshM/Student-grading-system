@@ -25,7 +25,7 @@ export async function POST(req) {
         const newCourse = new Course({
             name,
             code,
-            faculty: facultyObjectId || undefined, // If no faculty is provided, it remains undefined
+            faculty: facultyObjectId || undefined,
             credits
         });
 

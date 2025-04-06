@@ -27,7 +27,7 @@ export default function AssignCourseForm() {
         setIsSuccess(true);
         setMessage(data.message);
         setFacultyName("");
-        setCourseCode(""); // ✅ Corrected from setCourseName("")
+        setCourseCode(""); 
       } else {
         setIsSuccess(false);
         setMessage(data.error || "Failed to assign course");
