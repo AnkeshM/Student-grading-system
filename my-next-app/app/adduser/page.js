@@ -6,7 +6,7 @@ export default function AdminPanel() {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
   const [batch, setBatch] = useState("");
-  const [semester, setSemester] = useState(""); // added
+  const [semester, setSemester] = useState(""); 
   const [department, setDepartment] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

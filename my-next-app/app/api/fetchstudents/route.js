@@ -22,7 +22,7 @@ export async function GET(req) {
       { role: "student", semester: semesterObjectId },
       "_id name email batch semester"
     )
-      .populate("semester", "name startDate endDate") // Populate semester details if needed
+      .populate("semester", "name startDate endDate")
       .sort({ name: 1 });
 
     if (!students.length) {

@@ -23,8 +23,7 @@ export default function Login() {
     if (res.ok) {
       // Store user data in localStorage
       localStorage.setItem("user", JSON.stringify(data.userData));
-
-      // Redirect based on role
+      
       if (data.userData.role === "admin") {
         router.push("/admin");
       } else if (data.userData.role === "student") {

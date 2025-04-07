@@ -17,7 +17,6 @@ export default function QuizzesPage() {
         const res = await axios.get(`/api/quizzes?studentId=${user.userId}`);
         console.log("Fetched Quizzes:", res.data);
 
-        // Group quizzes by course name (using populated courseId.name)
         const grouped = {};
         res.data.forEach((quiz) => {
           const courseName = quiz.courseId?.name || "Unassigned Course";

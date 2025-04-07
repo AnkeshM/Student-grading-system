@@ -16,7 +16,7 @@ export default function UpdateSemesterForm() {
       const res = await fetch("/api/updatesem", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, semesterName: semester }) // "Semester 1", "Semester 2", etc.
+        body: JSON.stringify({ email, semesterName: semester })
       });
 
       const data = await res.json();

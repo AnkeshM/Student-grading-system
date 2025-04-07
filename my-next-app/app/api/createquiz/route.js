@@ -1,4 +1,3 @@
-// Updated /api/createquiz backend route
 import connectDB from "@/lib/mongodb";
 import { NextResponse } from "next/server";
 import Quiz from "@/models/quiz";

@@ -43,7 +43,6 @@ export async function POST(req) {
         return NextResponse.json({ error: "Batch and semester are required for students" }, { status: 400 });
       }
 
-      // Convert number like "1" to "Semester 1"
       const semesterName = `Semester ${semester}`;
       const semesterDoc = await Semester.findOne({ name: semesterName });
 
@@ -67,7 +66,6 @@ export async function POST(req) {
       newUserData.department = department;
     }
 
-    // Save user to database
     const newUser = new User(newUserData);
     await newUser.save();
 

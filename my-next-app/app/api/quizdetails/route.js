@@ -1,9 +1,7 @@
-// app/api/quizdetails/route.js
 import connectDB from "@/lib/mongodb";
 import { NextResponse } from "next/server";
 import Quiz from "@/models/quiz";
 
-// GET /api/quizdetails?id=quizId
 export async function GET(req) {
   try {
     await connectDB();

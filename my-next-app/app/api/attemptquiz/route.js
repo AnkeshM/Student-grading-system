@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import Quiz from "@/models/quiz";
 import User from "@/models/user";
 
-// ✅ GET handler for checking if a student has already attempted a quiz
+
 export async function GET(req) {
   await connectDB();
 
@@ -38,7 +38,6 @@ export async function GET(req) {
   }
 }
 
-// ✅ POST handler (your existing quiz submission logic)
 export async function POST(req) {
   await connectDB();
 
@@ -118,7 +117,7 @@ export async function POST(req) {
     quiz.submissions.push(submission);
     await quiz.save();
 
-    // Update student quiz scores (only)
+    // Update student quiz scores
     const student = await User.findById(studentId);
     if (!student) {
       return NextResponse.json({ error: "Student not found" }, { status: 404 });

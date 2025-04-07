@@ -1,4 +1,3 @@
-// components/StudentPerformanceChart.jsx
 "use client";
 import { useEffect, useState } from "react";
 import {

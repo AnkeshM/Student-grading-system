@@ -2,7 +2,7 @@ import connectDB from "@/lib/mongodb";
 import { NextResponse } from "next/server";
 import Quiz from "@/models/quiz";
 import Student from "@/models/user";
-import Semester from "@/models/semesters"; // Import the Semester model
+import Semester from "@/models/semesters";
 import Course from "@/models/courses";
 
 

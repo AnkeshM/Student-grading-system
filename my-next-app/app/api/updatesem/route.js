@@ -58,8 +58,6 @@ export async function POST(req) {
       courses: []
     });
 
-    // Optionally also update current semester reference
-
     await student.save();
 
     return NextResponse.json(

@@ -5,7 +5,7 @@ import Course from "@/models/courses";
 
 export async function POST(req) {
     try {
-        await dbConnect(); // Ensure DB connection
+        await dbConnect(); 
 
         const { name, startDate, endDate, courses } = await req.json();
 
@@ -28,7 +28,7 @@ export async function POST(req) {
             name,
             startDate: new Date(startDate),
             endDate: new Date(endDate),
-            courses: courseObjects.map(course => course._id) // Only store ObjectIds
+            courses: courseObjects.map(course => course._id)
         });
 
         await newSemester.save();

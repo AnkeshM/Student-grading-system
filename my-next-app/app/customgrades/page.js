@@ -30,7 +30,7 @@ export default function CustomGrading() {
         const data = await res.json();
 
         if (Array.isArray(data) && data.length > 0) {
-          setCourse(data[0]); // only one course is assigned
+          setCourse(data[0]); 
         } else {
           setMessage("No courses found for this faculty.");
         }
